@@ -11,4 +11,4 @@ keyboard==0.13.5
 pynput==1.7.6
 numpy==1.24.4
 pytz==2024.1
-tzlocal==4.3
+tzlocal
