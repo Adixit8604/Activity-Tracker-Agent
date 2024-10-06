@@ -1,0 +1,116 @@
+<MyApp>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(10)
+        canvas.before:
+            Color: 
+                rgba: 1, 1, 1, 1  # White background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+<FirstScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(10)
+        size_hint_y: 0.6  # Reducing the overall height to push it upwards and center
+        
+        Label:
+            text: "Enter your email for verification"
+            color: (0,0,1,1)
+            font_size: '20sp'
+            size_hint_y: None
+            height: self.texture_size[1] + dp(10)
+
+        TextInput:
+            id: email_input
+            multiline: False
+            hint_text: "Email"
+            size_hint_y: None
+            height: dp(40)  # Control the height of TextInput
+            size_hint_x: 0.8  # Reducing width for better alignment
+            pos_hint: {"center_x": 0.5}  # Center horizontally
+
+        Button:
+            text: "Submit"
+            size_hint_y: None
+            height: dp(40)  # Control the height of Button
+            size_hint_x: 0.5
+            pos_hint: {"center_x": 0.5}  # Center horizontally
+            on_press: root.handle_email_submit()
+
+        Label:
+            id: verification_label
+            text: ""
+            color: (1, 0, 0, 1)  # Red text for feedback
+            size_hint_y: None
+            height: dp(40)  # Control height
+            size_hint_x: 0.8  # Align with input size
+            pos_hint: {"center_x": 0.5}  # Center horizontally
+        
+        Widget:
+            size_hint_y: None
+            height: self.parent.height * 0.4
+
+<QRScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(10)
+        size_hint_y: 0.6  # Pushes the content upward to center
+
+        Label:
+            id: done_label
+            text: "Generate QR Code"
+            font_size: '20sp'
+            size_hint_y: None
+            height: self.texture_size[1] + dp(10)
+        
+        Image:
+            id: qr_image
+            size_hint: (1, 0.5)
+            opacity: 0  # Initially hidden
+
+        TextInput:
+            id: otp_input
+            multiline: False
+            hint_text: "Enter OTP"
+            size_hint_y: None
+            height: dp(40)  # Control TextInput height
+            disabled: True
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}  # Center horizontally
+        
+        Button:
+            id: otp_submit_btn
+            text: "Submit OTP"
+            size_hint_y: None
+            height: dp(40)  # Button height
+            size_hint_x: 0.5
+            pos_hint: {"center_x": 0.5}  # Center horizontally
+            on_press: root.verify_otp()
+            disabled: True
+        Widget:
+            size_hint_y: None
+            height: self.parent.height * 0.3
+
+<DoneScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(10)
+        size_hint_y: 0.6  # Center everything vertically
+
+        Label:
+            text: "Verification Complete!"
+            color: (0,0,1,1)
+            font_size: '20sp'
+            size_hint_y: None
+            height: self.texture_size[1] + dp(10)
+        
+        Widget:
+            size_hint_y: None
+            height: self.parent.height * 0.6
+        
